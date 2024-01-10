@@ -23,6 +23,70 @@ namespace WorkingWithDataStructures
             Head = newSLLNode;
         }
 
+        public void InsertInMiddle(int data)
+        {
+            SLLNode sLLNode = new SLLNode(data);
+            if (Head == null)
+            {
+                Head = sLLNode;
+            }
+            else
+            {
+                SLLNode slowPointer = Head;
+                SLLNode fastPointer = Head;
+
+                while (fastPointer != null && fastPointer.Next != null)
+                {
+                    fastPointer = fastPointer.Next.Next;
+                    if (fastPointer != null)
+                    {
+                        slowPointer = slowPointer.Next;
+                    }
+                }
+
+                sLLNode.Next = slowPointer.Next;
+                slowPointer.Next = sLLNode;
+            }
+
+        }
+
+        public void InsertAtPosition(int data, int position)
+        {
+            SLLNode newNode = new SLLNode(data);
+
+            if (position <= 0)
+            {
+                Console.WriteLine("Invalid position. Position should be greater than 0.");
+                return;
+            }
+
+            if (position == 1)
+            {
+                newNode.Next = Head;
+                Head = newNode;
+                return;
+            }
+
+            SLLNode current = Head;
+            int currentPosition = 1;
+
+            while (currentPosition < position - 1 && current != null)
+            {
+                current = current.Next;
+                currentPosition++;
+            }
+
+            if (current == null)
+            {
+                Console.WriteLine("Position exceeds the length of the linked list.");
+                return;
+            }
+
+            newNode.Next = current.Next;
+            current.Next = newNode;
+        }
+
+
         public void DisplayList()
         {
             SLLNode current = Head;

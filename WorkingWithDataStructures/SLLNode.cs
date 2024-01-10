@@ -9,7 +9,8 @@ namespace WorkingWithDataStructures
 {
     internal class SLLNode
     {
-        public int Data { get; set; }
+        
+        public object Data { get; set; }
         public SLLNode Next { get; set; }
 
         public SLLNode(int data)
